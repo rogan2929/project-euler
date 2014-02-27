@@ -18,7 +18,7 @@ public class ProjectEuler {
     public static void main(String[] args) {
         
         System.out.println("Problem 3: " + Problem3.result(600851475143L));
-        System.out.println("Problem 4: " + Problem4.result());
+        System.out.println("Problem 4: " + Problem4.result(2));
     }
     
 }
