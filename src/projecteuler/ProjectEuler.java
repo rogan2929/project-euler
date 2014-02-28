@@ -28,7 +28,8 @@ public class ProjectEuler {
 //        System.out.println("Problem 10: " + Problem10.result(2000000));
 //        System.out.println("Problem 11: " + Problem11.result());
 //        System.out.println("Problem 12: " + Problem12.result(500));
-        System.out.println("Problem 13: " + Problem13.result());
+//        System.out.println("Problem 13: " + Problem13.result());
+        System.out.println("Problem 14: " + Problem14.result(1000000));
     }
     
 }

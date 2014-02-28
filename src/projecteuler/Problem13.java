@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 /**
  * From: http://projecteuler.net/problem=13
- *
  * @author scalesr
  */
 public class Problem13 {
