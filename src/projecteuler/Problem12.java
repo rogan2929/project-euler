@@ -35,10 +35,15 @@ public class Problem12 {
     }
     
     static int getFactorCount(int n) {
-        return 0;
+        // From: http://mathcentral.uregina.ca/QQ/database/QQ.02.06/joe1.html
+        
+        ArrayList primes = getPrimes(n);
+        int factorCount = 0;
+        
+        return factorCount;
     }
     
-        public static ArrayList getPrimes(long x) {
+    public static ArrayList getPrimes(long x) {
         ArrayList primes = new ArrayList();
         
         for (long i = 2; i <= x; i++) {
