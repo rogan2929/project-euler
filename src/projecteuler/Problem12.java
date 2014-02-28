@@ -30,7 +30,6 @@ public class Problem12 {
     
     static int getTriangleSum(int n) {
         // From induction hypothesis...
-        System.out.println(n);
         return n * (n + 1) / 2;
     }
     
@@ -38,9 +37,23 @@ public class Problem12 {
         // From: http://mathcentral.uregina.ca/QQ/database/QQ.02.06/joe1.html
         
         ArrayList primes = getPrimes(n);
-        int factorCount = 0;
+        int factorCount = 1;
+        int exp = 1;
         
-        
+        for (int i = 0; i < primes.size(); i++) {
+            long nextFactor = (i == primes.size() - 1) ? 0 : (long)primes.get(i + 1);
+            long factor = (long)primes.get(i);
+            
+            if (factor != nextFactor) {
+                // New factor found.
+                factorCount *= (exp + 1);
+                exp = 1;
+            }
+            else {
+                // Same factor found.
+                exp++;
+            }
+        }
         
         return factorCount;
     }
