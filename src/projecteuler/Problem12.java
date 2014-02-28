@@ -40,6 +40,8 @@ public class Problem12 {
         ArrayList primes = getPrimes(n);
         int factorCount = 0;
         
+        
+        
         return factorCount;
     }
     
