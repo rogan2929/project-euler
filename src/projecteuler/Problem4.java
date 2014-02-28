@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- *
+ * From: http://projecteuler.net/problem=4
  * @author scalesr
  */
 public class Problem4 {

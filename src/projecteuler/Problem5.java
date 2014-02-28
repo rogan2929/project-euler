@@ -7,7 +7,7 @@
 package projecteuler;
 
 /**
- *
+ * From: http://projecteuler.net/problem=5
  * @author scalesr
  */
 public class Problem5 {

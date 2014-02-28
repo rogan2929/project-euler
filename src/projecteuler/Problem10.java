@@ -8,7 +8,7 @@ package projecteuler;
 import java.util.ArrayList;
 
 /**
- *
+ * From: http://projecteuler.net/problem=10
  * @author rogan2929
  */
 public class Problem10 {

@@ -7,7 +7,7 @@
 package projecteuler;
 
 /**
- *
+ * From: http://projecteuler.net/problem=9
  * @author rogan2929
  */
 public class Problem9 {

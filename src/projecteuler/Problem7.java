@@ -9,7 +9,7 @@ package projecteuler;
 import java.util.ArrayList;
 
 /**
- *
+ * From: http://projecteuler.net/problem=8
  * @author scalesr
  */
 public class Problem7 {

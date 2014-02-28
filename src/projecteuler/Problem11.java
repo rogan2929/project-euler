@@ -8,7 +8,7 @@ package projecteuler;
 import java.util.Arrays;
 
 /**
- *
+ * From: http://projecteuler.net/problem=11
  * @author rogan2929
  */
 public class Problem11 {
@@ -64,7 +64,7 @@ public class Problem11 {
 
                 // Diagonal Down Left
                 if (col >= 3 && row + 3 < 20) {
-                    product = grid[col][row];
+                    product = grid[col][row] * grid[col - 1][row + 1] * grid[col - 2][row + 2] * grid[col - 3][row + 3];
 
                     if (product > highestProduct) {
                         highestProduct = product;
@@ -73,7 +73,7 @@ public class Problem11 {
 
                 // Diagonal Down Right
                 if (col + 3 < 20 && row + 3 < 20) {
-                    product = grid[col][row];
+                    product = grid[col][row] * grid[col + 1][row + 1] * grid[col + 2][row + 2] * grid[col + 3][row + 3];
 
                     if (product > highestProduct) {
                         highestProduct = product;
