@@ -18,7 +18,6 @@ public class Problem10 {
         long sum = 0;
         
         for (int i = 0; i < primes.size(); i++) {
-            System.out.println((int)primes.get(i));
             sum += (int)primes.get(i);
         }
         
