@@ -12,6 +12,15 @@ package projecteuler;
  */
 public class Problem6 {
     public static int result(int n) {
-        return 0;
+        // Sum of squares
+        // n(n + 1)(2n + 1) / 6
+        
+        // Square of sum
+        // (n(n + 1) / 2) ^ 2
+        
+        int squaredSum = (int)Math.pow(n * (n + 1) / 2, 2);
+        int sumSquares = n * (n + 1) * (2 * n + 1) / 6;
+        
+        return squaredSum - sumSquares;
     }
 }
