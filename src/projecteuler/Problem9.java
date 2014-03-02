@@ -12,6 +12,35 @@ package projecteuler;
  */
 public class Problem9 {
     public static int result() {
-        return 0;
+        // So, here's what we know.
+        // a < b < c
+        // a + b + c = 1000
+        // a^2 + b^2 = c^2
+        
+        int a = 0;
+        int b = 0;
+        int c = 0;
+        boolean found = false;
+        
+        for (b = 1; b < 999; b++) {
+            for (a = 1; a < b; a++) {
+                if (evaluate(a, b)) {
+                    found = true;
+                    break;
+                }
+            }
+            
+            if (found) {
+                break;
+            }
+        }
+        
+        c = 1000 - a - b;
+        
+        return a * b * c;
+    }
+    
+    private static boolean evaluate(int a, int b) {        
+        return 500000 - 1000 * a - 1000 * b + a * b == 0;
     }
 }
