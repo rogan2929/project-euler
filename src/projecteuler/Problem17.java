@@ -51,17 +51,9 @@ public class Problem17 {
     public static int result() {
         int sum = 0;
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 1; i <= 1000; i++) {
             sum += letterCount(i);
         }
-
-//        letterCount(1000);
-//        letterCount(312);
-//        letterCount(456);
-//        letterCount(200);
-//        letterCount(110);
-//        letterCount(18);
-//        letterCount(754);
 
         return sum;
     }
@@ -115,7 +107,10 @@ public class Problem17 {
             number += teens[one - 1];
         }
         else if (one > 0) {
-            if (!number.equals("")) {
+            if (!number.equals("") && (thousand > 0 || hundred > 0 && ten == 0)) {
+                number += " and ";
+            }
+            else if (!number.equals("")) {
                 number += " ";
             }
             
