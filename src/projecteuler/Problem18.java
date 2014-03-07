@@ -11,7 +11,15 @@ package projecteuler;
  * @author scalesr
  */
 public class Problem18 {
+    static int[][] triangle;
+    
     public static long result() {
+        // Read the pyramid (triangle) in.
+        
         return 0L;
+    }
+    
+    private static void readInput() {
+        
     }
 }
