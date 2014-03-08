@@ -15,6 +15,7 @@ public class Problem18 {
     
     public static long result() {
         // Read the pyramid (triangle) in.
+        readInput();
         
         return 0L;
     }
