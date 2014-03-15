@@ -5,10 +5,12 @@
  */
 package projecteuler;
 
+import helpers.Pair;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,7 +21,17 @@ import java.util.logging.Logger;
  */
 public class Problem18 {
 
+    // Contains the triangle, or pyramid structure and values.
     ArrayList<Integer[]> triangle = new ArrayList();
+    
+    // Contains each constructed path, where a path is an array of Pairs.
+    ArrayList<Pair[]> foundPaths = new ArrayList();
+    
+    // Rows that have been examined by the algorithm.
+    int[] evaluatedRows;
+    
+    // Current largest p in the triangle.
+    Pair largestP;
 
     public static long result() {
         // Read the pyramid (triangle) in.        
@@ -38,7 +50,6 @@ public class Problem18 {
             BufferedReader br = new BufferedReader(new FileReader((this.getClass().getResource("Problem18.txt")).getFile()));
 
             String line;
-            int row = 0;
 
             while ((line = br.readLine()) != null) {
                 String[] numbers = line.split(" ");
@@ -53,11 +64,30 @@ public class Problem18 {
                 
                 System.out.println();
             }
+            
+            // Set up the evaluated rows structure.
+            evaluatedRows = new int[triangle.size()];
         } catch (IOException ex) {
             Logger.getLogger(Problem18.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    /***
+     * Find the largest p that is not on a previous evaluated row.
+     * @return largest value of p
+     */
+    private void getLargestP() {
+        int largestValue = 0;
+        int row;
+        int col;
+        
+        // Start at one, since we already have the first entry in our path, which is triangles[0][0].
+        for (row = 1; row < triangle.size(); row++) {
+            if (!Arrays.asList(this.evaluatedRows).contains(row)) {
+            }
+        }
+    }
+    
     public ArrayList<Integer[]> getTriangle() {
         return triangle;
     }

@@ -13,10 +13,18 @@ package helpers;
 public class Pair {
     private int x;
     private int y;
+    private int value;
     
     public Pair (int x, int y) {
         this.x = x;
         this.y = y;
+        this.value = 0;
+    }
+    
+    public Pair (int row, int col, int value) {
+        this.x = row;
+        this.y = col;
+        this.value = value;
     }
     
     public int getX() {
