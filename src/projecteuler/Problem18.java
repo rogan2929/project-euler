@@ -6,10 +6,9 @@
 package projecteuler;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,40 +18,47 @@ import java.util.logging.Logger;
  * @author scalesr
  */
 public class Problem18 {
-    int[][] triangle;
+
+    ArrayList<Integer[]> triangle = new ArrayList();
 
     public static long result() {
         // Read the pyramid (triangle) in.        
         Problem18 problem = new Problem18();
 
         problem.readInput();
-        
+
         return 0L;
     }
 
+    /***
+     * Read input data into the triangle array list.
+     */
     private void readInput() {
         try {
             BufferedReader br = new BufferedReader(new FileReader((this.getClass().getResource("Problem18.txt")).getFile()));
 
             String line;
             int row = 0;
-            int col = 0;
 
             while ((line = br.readLine()) != null) {
                 String[] numbers = line.split(" ");
+                Integer[] rowIntegers = new Integer[numbers.length];
 
-                System.out.println(numbers[0]);
+                for (int col = 0; col < numbers.length; col++) {
+                    rowIntegers[col] = Integer.parseInt(numbers[col]);
+                    System.out.print(numbers[col] + " ");
+                }
+                
+                triangle.add(rowIntegers);
+                
+                System.out.println();
             }
         } catch (IOException ex) {
             Logger.getLogger(Problem18.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public int[][] getTriangle() {
+    public ArrayList<Integer[]> getTriangle() {
         return triangle;
-    }
-
-    public void setTriangle(int[][] triangle) {
-        this.triangle = triangle;
     }
 }
