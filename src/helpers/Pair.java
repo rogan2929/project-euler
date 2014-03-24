@@ -41,9 +41,10 @@ public class Pair {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + this.x;
-        hash = 17 * hash + this.y;
+        int hash = 3;
+        hash = 19 * hash + this.x;
+        hash = 19 * hash + this.y;
+        hash = 19 * hash + this.value;
         return hash;
     }
 
@@ -62,8 +63,14 @@ public class Pair {
         if (this.y != other.y) {
             return false;
         }
+        if (this.value != other.value) {
+            return false;
+        }
         return true;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Pair{" + "x=" + x + ", y=" + y + ", value=" + value + '}';
+    }
 }
