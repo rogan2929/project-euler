@@ -34,6 +34,10 @@ public class Pair {
     public int getY() {
         return y;
     }
+    
+    public int getValue() {
+        return value;
+    }
 
     @Override
     public int hashCode() {
