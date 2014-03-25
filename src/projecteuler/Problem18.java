@@ -151,60 +151,43 @@ public class Problem18 {
                     if (value > largestValue && !p.equals(anchorPoint) && !p.equals(reference)) {
                         // Test if p falls on the same path. This is determined by examining the reference pair's triangle of divergence.
                         boolean onPath;
-                        int refRow = reference.getX();
-                        int refCol = reference.getY();
                         
-                        int maxRow = this.triangle.size();
+                        // Determine the divergence triangle for either the reference point or p.
+                        // Which depends on whichever is higher in the triangle.
                         
-                        if (row > refRow) {
-                            int i;
-                            int j;
-                            
-                            if (refRow > refCol) {
-                                i = refRow;
-                                j = refCol;
-                            }
-                            else {
-                                i = refCol;
-                                j = refRow;
-                            }
-                            
-                            // Get bottom right bound of triangle.
-                            for (; i < maxRow ; i++) {
-                                j++;
-                            }
-                            
-                            Pair lowerLeft = new Pair(i, j);
-                            
-                            i = 0;
+                        Pair a;     // Top point of the triangle.
+                        Pair b;     // Lower left corner
+                        Pair c;     // Lower right corner.
+                        Pair ref;     // Point (pair) to be evalulated.
+                        
+                        if (p.getX() < reference.getX()) {
+                            a = p;
+                            ref = reference;
                         }
                         else {
-                            
+                            a = reference;
+                            ref = p;
                         }
+                        
+                        // Last row of the triangle.
+                        int h = this.triangle.size() - 1;
+                        
+                        // Determine the bounds of the triangle defined by a.
+                        int k = h - a.getX();        // Distance to bottom.
+                        
+                        // b = a(h, c)
+                        b = new Pair(this.triangle.size() - 1, a.getY());
+                        
+                        // c = b(r, c + k)
+                        c = new Pair(b.getX(), b.getY() + k);
 
-//                        // Distance to bottom
-//                        int k = this.triangle.size() - 1 - refRow;
-//                        // Distance from right
-//                        int l = this.triangle.get(refRow).length - 1 - refCol;
-//
-//                        // Calculate the bounds of the divergence triangle from the given pair.
-//                        // Lower right triangle.
-//                        if (row > refRow) {
-//                            onPath = (row - refRow <= k && col - refCol <= l);
-//                        } else {
-//                            // Upper left triangle
-//                            //int k = this.triangle.size() - 1 - row;
-//                            
-//                            k = this.triangle.size() - 1 - row;
-//                            l = this.triangle.get(row).length - 1 - col;
-//                            
-//                            onPath = (refRow - row <= k && refCol - col <= k);
-//                        }
-
-//                        if (onPath) {
-//                            largestValue = value;
-//                            largest = p;
-//                        }
+                        // Now, see if 'ref' falls within the triangle defined by 'abc'.
+                        onPath = (ref.getX() <= b.getX() && ref.getY() <= c.getY());
+                        
+                        if (onPath) {
+                            largestValue = value;
+                            largest = p;
+                        }
                     }
                 }
             }
