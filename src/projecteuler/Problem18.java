@@ -185,7 +185,7 @@ public class Problem18 {
                         c = new Pair(b.getX(), b.getY() + k);
 
                         // Now, see if 'ref' falls within the triangle defined with vertices 'abc'.
-                        onPath = (ref.getX() <= b.getX() && ref.getY() <= c.getY());
+                        onPath = isPointInTriangle(a, b, c, ref);
                         
                         if (onPath) {
                             largestValue = value;
@@ -237,8 +237,20 @@ public class Problem18 {
         //this.currentAnchorPoint = nextAnchorPoint;
         return nextAnchorPoint;
     }
-
-    public ArrayList<Integer[]> getTriangle() {
-        return triangle;
+    
+    // From: http://stackoverflow.com/questions/2049582/how-to-determine-a-point-in-a-triangle
+   
+    private float sign(Pair a, Pair b, Pair c) {
+        return (a.getX() - c.getX()) * (b.getY() - c.getY()) - (b.getX() - c.getX()) * (a.getY() - c.getY());
+    }
+    
+    private boolean isPointInTriangle(Pair a, Pair b, Pair c, Pair ref) {
+        boolean b1, b2, b3;
+        
+        b1 = sign(ref, a, b) < 0.0F;
+        b2 = sign(ref, b, c) < 0.0F;
+        b3 = sign(ref, c, a) < 0.0F;
+        
+        return ((b1 == b2) && (b2 == b3));
     }
 }
