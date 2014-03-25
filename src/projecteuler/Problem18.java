@@ -155,10 +155,13 @@ public class Problem18 {
                         // Determine the divergence triangle for either the reference point or p.
                         // Which depends on whichever is higher in the triangle.
                         
+                        // Triangle vertices...
                         Pair a;     // Top point of the triangle.
                         Pair b;     // Lower left corner
                         Pair c;     // Lower right corner.
-                        Pair ref;     // Point (pair) to be evalulated.
+                        
+                        
+                        Pair ref;   // Point (pair) to be evalulated.
                         
                         if (p.getX() < reference.getX()) {
                             a = p;
@@ -181,7 +184,7 @@ public class Problem18 {
                         // c = b(r, c + k)
                         c = new Pair(b.getX(), b.getY() + k);
 
-                        // Now, see if 'ref' falls within the triangle defined by 'abc'.
+                        // Now, see if 'ref' falls within the triangle defined with vertices 'abc'.
                         onPath = (ref.getX() <= b.getX() && ref.getY() <= c.getY());
                         
                         if (onPath) {
