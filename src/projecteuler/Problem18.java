@@ -89,8 +89,7 @@ public class Problem18 {
         this.evaluatedRows.add(anchorPoint.getX());
 
         while (path.size() < pathLength) {
-            // Find the next largest value in the path, using the last known value as a reference.
-            path.add(getLargestP(anchorPoint, path.get(path.size() - 1)));
+            path.add(getLargestP(anchorPoint));
         }
 
         // Add 'em up.
@@ -131,11 +130,9 @@ public class Problem18 {
     /**
      * Find the largest p that is not on a previous evaluated row.
      *
-     * @param reference Reference point used to determine if the next largest p
-     * is on the same path as the anchor point.
      * @return largest p
      */
-    private Pair getLargestP(Pair anchorPoint, Pair reference) {
+    private Pair getLargestP(Pair anchorPoint) {
         int largestValue = 0;
         Pair largest = null;
         int row;
@@ -148,45 +145,33 @@ public class Problem18 {
 
                     Pair p = new Pair(row, col, value);
 
-                    if (value > largestValue && !p.equals(anchorPoint) && !p.equals(reference)) {
-                        // Test if p falls on the same path. This is determined by examining the reference pair's triangle of divergence.
+                    if (value > largestValue) {
+                        // Test if p falls on the same path. This is determined by examining the anchor point's triangles of divergence.
                         boolean onPath;
                         
-                        // Determine the divergence triangle for either the reference point or p.
-                        // Which depends on whichever is higher in the triangle.
-                        
-                        // Triangle vertices...
-                        Pair a;     // Top point of the triangle.
-                        Pair b;     // Lower left corner
-                        Pair c;     // Lower right corner.
-                        
-                        
-                        Pair ref;   // Point (pair) to be evalulated.
-                        
-                        if (p.getX() < reference.getX()) {
-                            a = p;
-                            ref = reference;
-                        }
-                        else {
-                            a = reference;
-                            ref = p;
-                        }
-                        
+                        // Triangles of divergence from the anchor point.
+                        Pair[] leftAnchorTriangle = new Pair[3];
+                        Pair[] rightAnchorTriangle = new Pair[3];
+
                         // Last row of the triangle.
                         int h = this.triangle.size() - 1;
-                        
-                        // Determine the bounds of the triangle defined by a.
-                        int k = h - a.getX();        // Distance to bottom.
-                        
-                        // b = a(h, c)
-                        b = new Pair(this.triangle.size() - 1, a.getY());
-                        
-                        // c = b(r, c + k)
-                        c = new Pair(b.getX(), b.getY() + k);
 
-                        // Now, see if 'ref' falls within the triangle defined with vertices 'abc'.
-                        onPath = isPointInTriangle(a, b, c, ref);
+                        // Determine the bounds of the triangle defined by a.
+                        int k = h - anchorPoint.getX();         // Distance to bottom.
+                        int l = anchorPoint.getY();             // Distance to left side.
                         
+                        leftAnchorTriangle[0] = new Pair(anchorPoint.getX() - l, 0);          
+                        leftAnchorTriangle[1] = new Pair(anchorPoint.getX(), 0);           
+                        leftAnchorTriangle[2] = anchorPoint;
+                        
+                        rightAnchorTriangle[0] = anchorPoint;
+                        rightAnchorTriangle[1] = new Pair(h, anchorPoint.getY());
+                        rightAnchorTriangle[2] = new Pair(h, anchorPoint.getY() + k);
+                        
+                        // See if p falls within either triangle of divergence.
+                        onPath = isPointInTriangle(leftAnchorTriangle[0], leftAnchorTriangle[1], leftAnchorTriangle[2], p);
+                        onPath |= isPointInTriangle(rightAnchorTriangle[0], rightAnchorTriangle[1], rightAnchorTriangle[2], p);
+
                         if (onPath) {
                             largestValue = value;
                             largest = p;
@@ -198,7 +183,7 @@ public class Problem18 {
 
         // Mark that this row has been evaluated.
         if (largest != null) {
-            this.evaluatedRows.add(row);
+            this.evaluatedRows.add(largest.getX());
         }
 
         return largest;
@@ -237,20 +222,19 @@ public class Problem18 {
         //this.currentAnchorPoint = nextAnchorPoint;
         return nextAnchorPoint;
     }
-    
+
     // From: http://stackoverflow.com/questions/2049582/how-to-determine-a-point-in-a-triangle
-   
     private float sign(Pair a, Pair b, Pair c) {
         return (a.getX() - c.getX()) * (b.getY() - c.getY()) - (b.getX() - c.getX()) * (a.getY() - c.getY());
     }
-    
+
     private boolean isPointInTriangle(Pair a, Pair b, Pair c, Pair ref) {
         boolean b1, b2, b3;
-        
+
         b1 = sign(ref, a, b) < 0.0F;
         b2 = sign(ref, b, c) < 0.0F;
         b3 = sign(ref, c, a) < 0.0F;
-        
+
         return ((b1 == b2) && (b2 == b3));
     }
 }
